@@ -1,0 +1,21 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Local source material and review artifacts; keep the deployed repo light.
+pics/
+review/
+tools/
+抖音、小红书 logo/
+
+# Original camera/mobile formats should be converted before publishing.
+*.HEIC
+*.heic
+
+# Local backup QR screenshots; runtime pages use cropped QR files instead.
+assets/images/social-douyin-card.jpg
+assets/images/social-xiaohongshu-card.jpg
+assets/images/social-xiaohongshu-qr.png
+
+# Vercel local state
+.vercel/

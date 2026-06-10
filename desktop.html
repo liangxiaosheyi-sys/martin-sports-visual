@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <title>Martin Sports Visual | Desktop Portfolio</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #101010;
+      --surface-2: #171717;
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #f5f3ec;
+      --muted: #aaa79d;
+      --gold: #d9b76b;
+      --green: #c5ff41;
+      --radius: 8px;
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #111;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(5, 5, 5, 0.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 48px));
+      min-height: 68px;
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: #d8d5ca;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-button {
+      min-height: 40px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #050505;
+      font-weight: 850;
+    }
+
+    .desktop-hero {
+      position: relative;
+      display: grid;
+      min-height: 100vh;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .desktop-hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.08) 42%, rgba(0, 0, 0, 0.92) 78%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.82));
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+    }
+
+    .hero-bg img {
+      object-position: center;
+      transform: scale(1.02);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      align-items: end;
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 120px 0 80px;
+      gap: 56px;
+    }
+
+    .hero-copy {
+      grid-column: 2;
+      padding: 34px 0 0 44px;
+      border-left: 1px solid rgba(217, 183, 107, 0.42);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: clamp(64px, 8vw, 118px);
+      font-weight: 900;
+      line-height: 0.94;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-lead {
+      max-width: 480px;
+      margin-bottom: 24px;
+      color: #e7e2d7;
+      font-size: 22px;
+      font-weight: 760;
+      line-height: 1.4;
+    }
+
+    .hero-meta {
+      margin-bottom: 32px;
+      color: #c7c3b8;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .primary-button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+    }
+
+    .primary-button {
+      background: linear-gradient(90deg, #f1cf7e, #b9ff4c);
+      color: #050505;
+    }
+
+    .ghost-button {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f5f3ec;
+    }
+
+    .section {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 88px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(38px, 5vw, 72px);
+      font-weight: 880;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .social-layout {
+      display: grid;
+      gap: 12px;
+    }
+
+    .social-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr) 164px;
+      gap: 20px;
+      align-items: center;
+      min-height: 188px;
+      overflow: hidden;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(217, 183, 107, 0.16), transparent 34%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    }
+
+    .social-card::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, transparent, rgba(217, 183, 107, 0.74), transparent);
+    }
+
+    .platform-icon {
+      display: grid;
+      width: 62px;
+      height: 62px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+        #0b0b0b;
+      color: var(--text);
+      text-align: center;
+      box-shadow: inset 0 0 0 1px rgba(217, 183, 107, 0.08);
+    }
+
+    .platform-icon svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .platform-title {
+      display: block;
+      color: var(--text);
+      font-size: 23px;
+      font-weight: 880;
+      line-height: 1.1;
+    }
+
+    .platform-subtitle {
+      display: block;
+      margin-top: 5px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .social-action {
+      min-width: 0;
+    }
+
+    .social-id {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 7px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      color: #e5e0d2;
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .social-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .social-url {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-all;
+    }
+
+    .social-open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 15px;
+      border: 1px solid rgba(217, 183, 107, 0.62);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(217, 183, 107, 0.14), rgba(217, 183, 107, 0.06));
+      color: #f3ead6;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .social-open:hover,
+    .social-open:focus-visible {
+      border-color: rgba(245, 211, 133, 0.92);
+      background: rgba(217, 183, 107, 0.2);
+      color: #fff8e8;
+      transform: translateY(-1px);
+    }
+
+    .social-qr {
+      width: 156px;
+      margin: 0;
+      justify-self: end;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(197, 255, 65, 0.1), transparent 42%),
+        #0b0b0b;
+      cursor: zoom-in;
+      aspect-ratio: 1;
+    }
+
+    .social-qr img {
+      height: 100%;
+      object-fit: contain;
+      background: #f7f4ed;
+      transition: transform 260ms ease, filter 260ms ease;
+    }
+
+    .social-qr:hover img {
+      transform: scale(1.018);
+      filter: contrast(1.04);
+    }
+
+    .social-qr--douyin {
+      background: #221f19;
+    }
+
+    .social-qr--douyin img {
+      object-fit: contain;
+      background: #221f19;
+    }
+
+    .social-qr--xhs {
+      background: #f7f4ed;
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 50px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      color: #e5e1d6;
+      font-size: 14px;
+    }
+
+    .contact-pill span {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .shot {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background: #111;
+      cursor: zoom-in;
+    }
+
+    .shot::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 40%;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.58));
+    }
+
+    .shot.large {
+      grid-column: span 7;
+      min-height: 620px;
+    }
+
+    .shot.medium {
+      grid-column: span 5;
+      min-height: 620px;
+    }
+
+    .shot.third {
+      grid-column: span 4;
+      min-height: 460px;
+    }
+
+    .shot.wide {
+      grid-column: span 8;
+      min-height: 430px;
+    }
+
+    .shot.tall {
+      grid-column: span 4;
+      min-height: 620px;
+    }
+
+    .shot img {
+      transition: transform 280ms ease, filter 280ms ease;
+    }
+
+    .shot:hover img {
+      transform: scale(1.025);
+      filter: contrast(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.58);
+      color: #f5f3ec;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .service-grid,
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 156px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .price {
+      color: var(--gold);
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .footer {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 54px 0 72px;
+      color: #f2efe7;
+      font-size: 12px;
+      font-weight: 780;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 40;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(16, 16, 16, 0.82);
+      color: #f5f3ec;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+    }
+
+    .arrow-up {
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid currentColor;
+      border-left: 2px solid currentColor;
+      transform: translateY(3px) rotate(45deg);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .lightbox.is-open {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 92vw;
+      max-height: 84vh;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(16, 16, 16, 0.86);
+      color: #fff;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        grid-column: 1;
+        padding-left: 24px;
+      }
+
+      .shot.large,
+      .shot.medium,
+      .shot.third,
+      .shot.wide,
+      .shot.tall {
+        grid-column: 1 / -1;
+        min-height: 520px;
+      }
+
+      .service-grid,
+      .price-grid,
+      .social-card {
+        grid-template-columns: 1fr;
+      }
+
+      .social-qr {
+        width: min(100%, 300px);
+      }
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .site-header,
+      .to-top,
+      .lightbox {
+        display: none !important;
+      }
+
+      .section,
+      .card,
+      .shot {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="桌面版导航">
+      <a class="brand" href="#top">Martin Sports Visual</a>
+      <div class="nav-links">
+        <a href="#portfolio">作品</a>
+        <a href="#social">社媒</a>
+        <a href="#services">服务</a>
+        <a href="./index.html">手机 H5</a>
+        <a href="./pricing.html">报价单</a>
+        <a class="nav-button" href="./pricing.html">预约拍摄 / 咨询报价</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="desktop-hero">
+      <figure class="hero-bg">
+        <img src="./assets/images/cover-cycling-pink-pan.jpg" alt="Martin Sports Visual 封面运动摄影作品" loading="lazy" decoding="async">
+      </figure>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Photography by XXL_Martin</p>
+          <h1>Martin Sports Visual</h1>
+          <p class="hero-lead">运动影像预约制拍摄。速度感、人物气质、装备审美与社交传播价值。</p>
+          <p class="hero-meta">公路车 / TT / HYROX / 健身 / 马拉松 / 登山 / 户外运动影像</p>
+          <div class="button-row">
+            <a class="primary-button" href="./pricing.html">查看报价 / 预约拍摄</a>
+            <a class="ghost-button" href="./index.html">查看手机 H5</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Contact & Scan</h2>
+        </div>
+        <p class="section-copy">扫码看更多作品，或直接点击平台链接。这里保留最少信息，方便客户快速联系和跳转。</p>
+      </div>
+      <div class="social-layout" aria-label="抖音和小红书账号二维码">
+        <article class="social-card">
+          <div class="platform-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M28 7v20.5c0 6.2-4.8 10.5-10.8 10.5-5.5 0-9.7-3.6-9.7-8.5 0-5.1 4.5-8.7 10.2-8.7 1.1 0 2.1.1 3 .4v-6.3c-1-.2-2-.3-3.1-.3C8.5 14.6 2 20.9 2 29.3 2 37.5 8.7 44 17.2 44 26.6 44 34 37 34 27.6V18c3 2.3 6.2 3.6 10 3.9v-7.1c-4.1-.5-7.5-2.9-9.7-6.6L33.6 7H28z" fill="#ff4d61" opacity=".9"/>
+              <path d="M25.7 7v20.5c0 6.2-4.8 10.5-10.8 10.5-5.5 0-9.7-3.6-9.7-8.5 0-5.1 4.5-8.7 10.2-8.7 1.1 0 2.1.1 3 .4v-6.3c-1-.2-2-.3-3.1-.3C6.2 14.6 0 20.9 0 29.3 0 37.5 6.4 44 14.9 44c9.4 0 16.8-7 16.8-16.4V18c3 2.3 6.2 3.6 10 3.9v-7.1c-4.1-.5-7.5-2.9-9.7-6.6L31.3 7h-5.6z" fill="#7de7ff" opacity=".75"/>
+              <path d="M27 6v20.9c0 5.5-4.1 9.1-9.2 9.1-4.4 0-7.6-2.8-7.6-6.5 0-3.9 3.5-6.6 8.1-6.6 1.5 0 2.9.3 4.1.8v-7.3c-1.4-.4-2.8-.6-4.3-.6-7.8 0-13.5 5.6-13.5 13.4 0 7.6 5.8 13.1 13.3 13.1 8.4 0 14.8-6.2 14.8-15.2V16.2c3 2.5 6.5 4 10.7 4.3v-5.6c-4.7-.7-8.3-3.5-10.3-8.9H27z" fill="#f8f5eb"/>
+            </svg>
+          </div>
+          <div class="social-action">
+            <span class="platform-title">抖音</span>
+            <span class="platform-subtitle">Douyin</span>
+            <span class="social-id">抖音号 624889043</span>
+            <p class="social-url">douyin.com/search/624889043</p>
+            <div class="social-actions">
+              <a class="social-open" href="https://www.douyin.com/search/624889043" target="_blank" rel="noopener noreferrer">打开抖音链接</a>
+            </div>
+          </div>
+          <figure class="social-qr social-qr--douyin">
+            <img src="./assets/images/social-douyin-qr.jpg" alt="抖音二维码截图，账号潇潇乐 XXL_Martin，抖音号 624889043" loading="lazy" decoding="async">
+          </figure>
+        </article>
+        <article class="social-card">
+          <div class="platform-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <rect x="5" y="7" width="38" height="34" rx="10" fill="#f25555"/>
+              <path d="M13 18h22M13 25h18M13 32h22" stroke="#fff7ed" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="36" cy="14" r="4" fill="#d9b76b"/>
+            </svg>
+          </div>
+          <div class="social-action">
+            <span class="platform-title">小红书</span>
+            <span class="platform-subtitle">Red Note</span>
+            <span class="social-id">小红书号 551501728</span>
+            <p class="social-url">xiaohongshu.com/search_result?keyword=551501728</p>
+            <div class="social-actions">
+              <a class="social-open" href="https://www.xiaohongshu.com/search_result?keyword=551501728" target="_blank" rel="noopener noreferrer">打开小红书链接</a>
+            </div>
+          </div>
+          <figure class="social-qr social-qr--xhs">
+            <img src="./assets/images/social-xiaohongshu-qr-v2.png" alt="小红书二维码截图，账号潇潇乐 XXL_Martin，小红书号 551501728" loading="lazy" decoding="async">
+          </figure>
+        </article>
+      </div>
+      <div class="contact-methods" aria-label="直接联系方式">
+        <div class="contact-pill"><span>Email</span><a href="mailto:liangxiao.sheyi@gmail.com">liangxiao.sheyi@gmail.com</a></div>
+        <div class="contact-pill"><span>WeChat</span><b>www6561628</b></div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Speed / Cinema / Portrait</p>
+          <h2>Selected Work</h2>
+        </div>
+        <p class="section-copy">这里展示的是可直接用于客户沟通的商业样片：追焦速度、夜骑电影感、人物肖像、装备细节、AI 视觉延展与活动内容。</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot large">
+          <img src="./assets/images/speed-04.jpg" alt="男骑手公路追焦作品" loading="lazy" decoding="async">
+          <span class="badge">Speed</span>
+        </figure>
+        <figure class="shot medium">
+          <img src="./assets/images/cinema-02.jpg" alt="男骑手电影感特写" loading="lazy" decoding="async">
+          <span class="badge">Close-up</span>
+        </figure>
+        <figure class="shot third">
+          <img src="./assets/images/speed-05.jpg" alt="白色女骑手动态追焦" loading="lazy" decoding="async">
+          <span class="badge">Motion</span>
+        </figure>
+        <figure class="shot third">
+          <img src="./assets/images/portrait-01.jpg" alt="女性夜景半身运动肖像" loading="lazy" decoding="async">
+          <span class="badge">Portrait</span>
+        </figure>
+        <figure class="shot third">
+          <img src="./assets/images/gear-02.jpg" alt="轮组装备细节" loading="lazy" decoding="async">
+          <span class="badge">Gear</span>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">AI Enhanced</p>
+          <h2>Poster Assets</h2>
+        </div>
+        <p class="section-copy">AI 处理适合把真实拍摄素材延展成海报、封面、活动预热图和品牌视觉资产。它是附加价值，不替代拍摄本身。</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot medium">
+          <img src="./assets/images/ai-visual-01.jpg" alt="LOOK 骑行 AI 速度品牌海报" loading="lazy" decoding="async">
+          <span class="badge">AI Poster</span>
+        </figure>
+        <figure class="shot large">
+          <img src="./assets/images/ai-visual-02.jpg" alt="夜骑双重曝光 AI 处理作品" loading="lazy" decoding="async">
+          <span class="badge">AI Motion</span>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Cinematic Set</p>
+          <h2>Visual Story</h2>
+        </div>
+        <p class="section-copy">电影感来自光线、前景、距离和人物状态。客户买到的不只是照片，而是一组可以发圈、发小红书、做个人运动形象的内容资产。</p>
+      </div>
+      <div class="gallery">
+        <figure class="shot tall">
+          <img src="./assets/images/cinema-01.jpg" alt="花景女骑手电影感作品" loading="lazy" decoding="async">
+          <span class="badge">Floral</span>
+        </figure>
+        <figure class="shot wide">
+          <img src="./assets/images/cinema-03.jpg" alt="摄影师与骑手叙事组图" loading="lazy" decoding="async">
+          <span class="badge">Story</span>
+        </figure>
+        <figure class="shot wide">
+          <img src="./assets/images/cinema-04.jpg" alt="电影感骑行组图" loading="lazy" decoding="async">
+          <span class="badge">Cinema</span>
+        </figure>
+        <figure class="shot tall">
+          <img src="./assets/images/night-03.jpg" alt="夜骑灯光氛围作品" loading="lazy" decoding="async">
+          <span class="badge">Night</span>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Available Services</p>
+          <h2>Services</h2>
+        </div>
+        <p class="section-copy">面向个人运动形象、赛事跟拍、车队活动、装备品牌与商业内容合作。</p>
+      </div>
+      <div class="service-grid">
+        <article class="card">
+          <h3>个人运动影像</h3>
+          <p>公路车、TT、夜骑、健身、户外。适合头像、朋友圈九宫格、小红书封面和个人运动账号内容。</p>
+        </article>
+        <article class="card">
+          <h3>赛事 / 活动跟拍</h3>
+          <p>HYROX、马拉松、跑团、车队活动、品牌骑行日。兼顾个人高光和团队关系。</p>
+        </article>
+        <article class="card">
+          <h3>品牌 / 装备内容</h3>
+          <p>车店、装备品牌、俱乐部、商业账号发布。可包含装备细节、海报视觉和 AI 辅助延展。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Booking & Pricing</p>
+          <h2>Pricing</h2>
+        </div>
+        <p class="section-copy">报价保持预约制和项目制，不做低价促销。正式报价根据拍摄人数、时长、交付内容、商业用途和授权范围确定。</p>
+      </div>
+      <div class="price-grid">
+        <article class="card">
+          <h3>个人运动影像</h3>
+          <p class="price">¥699 起</p>
+        </article>
+        <article class="card">
+          <h3>标准运动写真</h3>
+          <p class="price">¥1280 起</p>
+        </article>
+        <article class="card">
+          <h3>团队 / 品牌 / 活动</h3>
+          <p class="price">¥3999 起</p>
+        </article>
+      </div>
+      <div class="button-row" style="margin-top: 28px;">
+        <a class="primary-button" href="./pricing.html">查看完整报价单</a>
+        <a class="ghost-button" href="./index.html">打开手机 H5 版本</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Photography by XXL_Martin</footer>
+
+  <button class="to-top" type="button" aria-label="返回顶部">
+    <span class="arrow-up" aria-hidden="true"></span>
+  </button>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+    <button class="lightbox-close" type="button" aria-label="关闭图片预览">&times;</button>
+    <img alt="图片预览" loading="lazy" decoding="async">
+  </div>
+
+  <script>
+    (function () {
+      const topButton = document.querySelector(".to-top");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const lightboxClose = lightbox.querySelector(".lightbox-close");
+
+      topButton.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      document.querySelectorAll(".shot, .social-qr").forEach(function (shot) {
+        shot.addEventListener("click", function () {
+          const img = shot.querySelector("img");
+          lightboxImage.src = img.currentSrc;
+          lightboxImage.alt = img.alt;
+          lightbox.classList.add("is-open");
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        lightboxImage.removeAttribute("src");
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeLightbox();
+      });
+    })();
+  </script>
+</body>
+</html>
