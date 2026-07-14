@@ -2,1036 +2,277 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050505">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M14 42 28 18l8 14 14-10-16 24-8-14z' fill='%23d9b76b'/%3E%3C/svg%3E">
-  <title>Martin Sports Visual | Desktop Portfolio</title>
-  <style>
-    :root {
-      --bg: #050505;
-      --surface: #101010;
-      --surface-2: #171717;
-      --line: rgba(255, 255, 255, 0.14);
-      --text: #f5f3ec;
-      --muted: #aaa79d;
-      --gold: #d9b76b;
-      --green: #c5ff41;
-      --radius: 8px;
-      color-scheme: dark;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--bg);
-    }
-
-    body {
-      margin: 0;
-      background: #000;
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-        "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background: #111;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 30;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(5, 5, 5, 0.72);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: min(1180px, calc(100% - 48px));
-      min-height: 68px;
-      margin: 0 auto;
-      gap: 24px;
-    }
-
-    .brand {
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      color: #d8d5ca;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .nav-button {
-      min-height: 40px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--gold);
-      color: #050505;
-      font-weight: 850;
-    }
-
-    .desktop-hero {
-      position: relative;
-      display: grid;
-      min-height: 100vh;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .desktop-hero::after {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      content: "";
-      background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.08) 42%, rgba(0, 0, 0, 0.92) 78%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.82));
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-    }
-
-    .hero-bg img {
-      object-position: center;
-      transform: scale(1.02);
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
-      align-items: end;
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 120px 0 80px;
-      gap: 56px;
-    }
-
-    .hero-copy {
-      grid-column: 2;
-      padding: 34px 0 0 44px;
-      border-left: 1px solid rgba(217, 183, 107, 0.42);
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 850;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      font-size: clamp(64px, 8vw, 118px);
-      font-weight: 900;
-      line-height: 0.94;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .hero-lead {
-      max-width: 480px;
-      margin-bottom: 24px;
-      color: #e7e2d7;
-      font-size: 22px;
-      font-weight: 760;
-      line-height: 1.4;
-    }
-
-    .hero-meta {
-      margin-bottom: 32px;
-      color: #c7c3b8;
-      font-size: 15px;
-      letter-spacing: 0.05em;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .primary-button,
-    .ghost-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 850;
-      letter-spacing: 0.05em;
-    }
-
-    .primary-button {
-      background: linear-gradient(90deg, #f1cf7e, #b9ff4c);
-      color: #050505;
-    }
-
-    .ghost-button {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
-      color: #f5f3ec;
-    }
-
-    .section {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 88px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 34px;
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-size: clamp(38px, 5vw, 72px);
-      font-weight: 880;
-      line-height: 0.98;
-      text-transform: uppercase;
-    }
-
-    .section-copy {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.85;
-    }
-
-    .social-layout {
-      display: grid;
-      gap: 12px;
-    }
-
-    .social-card {
-      position: relative;
-      display: grid;
-      grid-template-columns: 74px minmax(0, 1fr) 164px;
-      gap: 20px;
-      align-items: center;
-      min-height: 188px;
-      overflow: hidden;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        radial-gradient(circle at 8% 0%, rgba(217, 183, 107, 0.16), transparent 34%),
-        linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    }
-
-    .social-card::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 1px;
-      content: "";
-      background: linear-gradient(90deg, transparent, rgba(217, 183, 107, 0.74), transparent);
-    }
-
-    .platform-icon {
-      display: grid;
-      width: 62px;
-      height: 62px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-        #0b0b0b;
-      color: var(--text);
-      text-align: center;
-      box-shadow: inset 0 0 0 1px rgba(217, 183, 107, 0.08);
-    }
-
-    .platform-icon svg {
-      width: 36px;
-      height: 36px;
-    }
-
-    .platform-title {
-      display: block;
-      color: var(--text);
-      font-size: 23px;
-      font-weight: 880;
-      line-height: 1.1;
-    }
-
-    .platform-subtitle {
-      display: block;
-      margin-top: 5px;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .social-action {
-      min-width: 0;
-    }
-
-    .social-id {
-      display: inline-flex;
-      min-height: 34px;
-      align-items: center;
-      margin-top: 14px;
-      padding: 7px 11px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 999px;
-      color: #e5e0d2;
-      font-size: 13px;
-      font-weight: 780;
-    }
-
-    .social-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .social-url {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-      word-break: break-all;
-    }
-
-    .social-open {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 15px;
-      border: 1px solid rgba(217, 183, 107, 0.62);
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(217, 183, 107, 0.14), rgba(217, 183, 107, 0.06));
-      color: #f3ead6;
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 0.05em;
-      transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease;
-    }
-
-    .social-open:hover,
-    .social-open:focus-visible {
-      border-color: rgba(245, 211, 133, 0.92);
-      background: rgba(217, 183, 107, 0.2);
-      color: #fff8e8;
-      transform: translateY(-1px);
-    }
-
-    .social-qr {
-      width: 156px;
-      margin: 0;
-      justify-self: end;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(135deg, rgba(197, 255, 65, 0.1), transparent 42%),
-        #0b0b0b;
-      cursor: zoom-in;
-      aspect-ratio: 1;
-    }
-
-    .social-qr img {
-      height: 100%;
-      object-fit: contain;
-      background: #f7f4ed;
-      transition: transform 260ms ease, filter 260ms ease;
-    }
-
-    .social-qr:hover img {
-      transform: scale(1.018);
-      filter: contrast(1.04);
-    }
-
-    .social-qr--douyin {
-      background: #221f19;
-    }
-
-    .social-qr--douyin img {
-      object-fit: contain;
-      background: #221f19;
-    }
-
-    .social-qr--xhs {
-      background: #f7f4ed;
-    }
-
-    .contact-methods {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .contact-pill {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      min-height: 50px;
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.045);
-      color: #e5e1d6;
-      font-size: 14px;
-    }
-
-    .contact-pill span {
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-
-    .portfolio-category + .portfolio-category {
-      margin-top: 66px;
-      padding-top: 58px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .portfolio-category-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 22px;
-    }
-
-    .portfolio-category-head h3 {
-      margin: 0;
-      font-size: clamp(26px, 3vw, 38px);
-      line-height: 1.05;
-    }
-
-    .portfolio-subtitle {
-      margin: 0;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 0.12em;
-      text-align: right;
-      text-transform: uppercase;
-    }
-
-    .portfolio-gallery .shot {
-      grid-column: span 3;
-      min-height: 360px;
-    }
-
-    .portfolio-gallery .shot.portfolio-lead {
-      grid-column: span 7;
-      min-height: 620px;
-    }
-
-    .portfolio-gallery .shot.portfolio-support {
-      grid-column: span 5;
-      min-height: 620px;
-    }
-
-    .shot {
-      position: relative;
-      min-height: 300px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius);
-      background: #111;
-      cursor: zoom-in;
-    }
-
-    .shot::after {
-      position: absolute;
-      inset: auto 0 0;
-      height: 40%;
-      pointer-events: none;
-      content: "";
-      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.58));
-    }
-
-    .shot.large {
-      grid-column: span 7;
-      min-height: 620px;
-    }
-
-    .shot.medium {
-      grid-column: span 5;
-      min-height: 620px;
-    }
-
-    .shot.third {
-      grid-column: span 4;
-      min-height: 460px;
-    }
-
-    .shot.wide {
-      grid-column: span 8;
-      min-height: 430px;
-    }
-
-    .shot.tall {
-      grid-column: span 4;
-      min-height: 620px;
-    }
-
-    .shot img {
-      transition: transform 280ms ease, filter 280ms ease;
-    }
-
-    .shot:hover img {
-      transform: scale(1.025);
-      filter: contrast(1.05);
-    }
-
-    .badge {
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      z-index: 2;
-      padding: 6px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.58);
-      color: #f5f3ec;
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .service-grid,
-    .price-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .card {
-      min-height: 156px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .card p {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .price {
-      color: var(--gold);
-      font-size: 32px;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .footer {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 54px 0 72px;
-      color: #f2efe7;
-      font-size: 12px;
-      font-weight: 780;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .to-top {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 40;
-      display: grid;
-      width: 48px;
-      height: 48px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 999px;
-      background: rgba(16, 16, 16, 0.82);
-      color: #f5f3ec;
-      cursor: pointer;
-      backdrop-filter: blur(16px);
-    }
-
-    .arrow-up {
-      width: 12px;
-      height: 12px;
-      border-top: 2px solid currentColor;
-      border-left: 2px solid currentColor;
-      transform: translateY(3px) rotate(45deg);
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.9);
-    }
-
-    .lightbox.is-open {
-      display: flex;
-    }
-
-    .lightbox img {
-      width: auto;
-      max-width: 92vw;
-      max-height: 84vh;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: var(--radius);
-      object-fit: contain;
-    }
-
-    .lightbox-caption {
-      position: fixed;
-      bottom: 24px;
-      max-width: calc(100vw - 48px);
-      margin: 0;
-      color: #dedbd2;
-      font-size: 13px;
-      font-weight: 760;
-      letter-spacing: 0.08em;
-      text-align: center;
-    }
-
-    .lightbox-close {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      background: rgba(16, 16, 16, 0.86);
-      color: #fff;
-      cursor: pointer;
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero-inner,
-      .section-head {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy {
-        grid-column: 1;
-        padding-left: 24px;
-      }
-
-      .shot.large,
-      .shot.medium,
-      .shot.third,
-      .shot.wide,
-      .shot.tall {
-        grid-column: 1 / -1;
-        min-height: 520px;
-      }
-
-      .portfolio-category-head {
-        display: block;
-      }
-
-      .portfolio-subtitle {
-        margin-top: 10px;
-        text-align: left;
-      }
-
-      .portfolio-gallery .shot,
-      .portfolio-gallery .shot.portfolio-lead,
-      .portfolio-gallery .shot.portfolio-support {
-        grid-column: 1 / -1;
-        min-height: 460px;
-      }
-
-      .service-grid,
-      .price-grid,
-      .social-card {
-        grid-template-columns: 1fr;
-      }
-
-      .social-qr {
-        width: min(100%, 300px);
-      }
-    }
-
-    @media print {
-      * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .site-header,
-      .to-top,
-      .lightbox {
-        display: none !important;
-      }
-
-      .section,
-      .card,
-      .shot {
-        break-inside: avoid;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#030303">
+  <meta name="description" content="Martin Sports Visual — 成都运动摄影师，专注骑行、HYROX、健身与赛事影像预约拍摄。">
+  <title>Martin Sports Visual | 运动摄影作品与预约</title>
+  <link rel="icon" href="./assets/images/cover-cycling-pink-pan.jpg" type="image/jpeg">
+  <link rel="preload" href="./assets/videos/hero-desktop.mp4?v=2k60" as="video" type="video/mp4" media="(min-width: 901px)">
+  <link rel="stylesheet" href="./assets/css/portfolio-redesign.css">
 </head>
-<body>
-  <header class="site-header">
-    <nav class="nav" aria-label="桌面版导航">
-      <a class="brand" href="#top">Martin Sports Visual</a>
-      <div class="nav-links">
+<body id="top">
+  <a class="skip-link" href="#portfolio">跳到作品</a>
+
+  <header class="site-nav" aria-label="主导航">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="返回首页">Martin Sports Visual</a>
+      <a class="nav-quick" href="./pricing.html">预约</a>
+      <nav class="nav-links" aria-label="页面导航">
         <a href="#portfolio">作品</a>
-        <a href="#social">社媒</a>
         <a href="#services">服务</a>
+        <a href="#social">社媒</a>
         <a href="./index.html">手机 H5</a>
         <a href="./pricing.html">报价单</a>
-        <a class="nav-button" href="./pricing.html">预约拍摄 / 咨询报价</a>
-      </div>
-    </nav>
+        <a class="nav-cta" href="./pricing.html">预约拍摄 / 咨询报价</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="打开导航"><span>MENU</span></button>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="desktop-hero">
-      <figure class="hero-bg">
-        <img src="./assets/images/cover-cycling-pink-pan.jpg" alt="Martin Sports Visual 封面运动摄影作品" loading="lazy" decoding="async">
-      </figure>
-      <div class="hero-inner">
+  <div class="page-aurora" data-aurora aria-hidden="true"><canvas></canvas></div>
+
+  <nav class="line-sidebar line-sidebar--markers line-sidebar--scale-tick" data-line-sidebar aria-label="作品栏目导航">
+    <button class="line-sidebar__toggle" type="button" aria-expanded="false" aria-controls="line-sidebar-panel">
+      <span class="line-sidebar__toggle-label">目录</span>
+      <span class="line-sidebar__toggle-count" data-sidebar-count>01/05</span>
+    </button>
+    <div class="line-sidebar__panel" id="line-sidebar-panel">
+      <p class="line-sidebar__eyebrow">Visual Index / 作品目录</p>
+      <ul class="line-sidebar__list">
+        <li class="line-sidebar__item" style="--effect: 1">
+          <a href="#selected" data-sidebar-link aria-current="true"><span class="line-sidebar__marker" aria-hidden="true"></span><span class="line-sidebar__label"><span class="line-sidebar__index">01</span><span class="line-sidebar__text">精选作品</span></span></a>
+        </li>
+        <li class="line-sidebar__item" style="--effect: 0">
+          <a href="#cycling" data-sidebar-link><span class="line-sidebar__marker" aria-hidden="true"></span><span class="line-sidebar__label"><span class="line-sidebar__index">02</span><span class="line-sidebar__text">骑行精选</span></span></a>
+        </li>
+        <li class="line-sidebar__item" style="--effect: 0">
+          <a href="#hyrox" data-sidebar-link><span class="line-sidebar__marker" aria-hidden="true"></span><span class="line-sidebar__label"><span class="line-sidebar__index">03</span><span class="line-sidebar__text">HYROX 与健身</span></span></a>
+        </li>
+        <li class="line-sidebar__item" style="--effect: 0">
+          <a href="#services" data-sidebar-link><span class="line-sidebar__marker" aria-hidden="true"></span><span class="line-sidebar__label"><span class="line-sidebar__index">04</span><span class="line-sidebar__text">拍摄项目</span></span></a>
+        </li>
+        <li class="line-sidebar__item" style="--effect: 0">
+          <a href="#social" data-sidebar-link><span class="line-sidebar__marker" aria-hidden="true"></span><span class="line-sidebar__label"><span class="line-sidebar__index">05</span><span class="line-sidebar__text">联系方式</span></span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="desktop-hero" aria-label="Martin Sports Visual 高清运动影像开场">
+      <div class="hero-video-layer">
+        <video autoplay muted loop playsinline preload="auto" poster="./assets/images/cover-cycling-pink-pan.jpg">
+          <source src="./assets/videos/hero-desktop.mp4?v=2k60" type="video/mp4" media="(min-width: 901px)">
+        </video>
+      </div>
+      <div class="hero-layout">
+        <div class="hero-categories" data-reveal>
+          <div class="category-stack">
+            <a class="category-link" href="#cycling">
+              <span class="category-index">01</span><span class="category-name">Cycling / 骑行摄影</span><span class="category-count">19</span>
+            </a>
+            <a class="category-link" href="#hyrox">
+              <span class="category-index">02</span><span class="category-name">HYROX &amp; Fitness</span><span class="category-count">17</span>
+            </a>
+          </div>
+        </div>
         <div class="hero-copy">
-          <p class="eyebrow">Photography by XXL_Martin</p>
-          <h1>Martin Sports Visual</h1>
-          <p class="hero-lead">运动影像预约制拍摄。速度感、人物气质、装备审美与社交传播价值。</p>
-          <p class="hero-meta">公路车 / TT / HYROX / 健身 / 马拉松 / 登山 / 户外运动影像</p>
-          <div class="button-row">
-            <a class="primary-button" href="./pricing.html">查看报价 / 预约拍摄</a>
-            <a class="ghost-button" href="./index.html">查看手机 H5</a>
+          <p class="eyebrow" data-reveal>Photography by XXL_Martin</p>
+          <h1 class="display-title" data-reveal-title>
+            <span class="title-line"><span>Martin</span></span>
+            <span class="title-line"><span>Sports</span></span>
+            <span class="title-line"><span>Visual</span></span>
+          </h1>
+          <p class="hero-description" data-reveal>运动影像预约制拍摄。速度感、人物气质、装备审美与社交传播价值。</p>
+          <p class="hero-meta" data-reveal>公路车 / TT / HYROX / 健身 / 马拉松 / 登山 / 户外运动影像</p>
+          <div class="hero-actions" data-reveal>
+            <a class="button-primary" href="./pricing.html">查看报价 / 预约拍摄</a>
+            <a class="button-ghost" href="#portfolio">浏览精选作品</a>
           </div>
+          <p class="hero-note" data-reveal>Chengdu · Available for travel</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="social">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Contact & Scan</h2>
+    <section class="mobile-hero" aria-label="Martin Sports Visual 手机版高清运动影像开场">
+      <div class="mobile-video-stage">
+        <video id="mobile-hero-video" autoplay muted loop playsinline preload="auto" poster="./assets/images/cover-cycling-pink-pan.jpg">
+          <source src="./assets/videos/hero-mobile.mp4?v=1080p60" type="video/mp4" media="(max-width: 900px)">
+        </video>
+        <span class="video-id">MV · 1080P</span>
+        <div class="video-controls">
+          <button class="video-control" type="button" data-video-play>暂停</button>
+          <button class="video-control" type="button" data-video-fullscreen>横屏全屏</button>
         </div>
-        <p class="section-copy">扫码看更多作品，或直接点击平台链接。这里保留最少信息，方便客户快速联系和跳转。</p>
       </div>
-      <div class="social-layout" aria-label="抖音和小红书账号二维码">
-        <article class="social-card">
-          <div class="platform-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" role="img">
-              <path d="M28 7v20.5c0 6.2-4.8 10.5-10.8 10.5-5.5 0-9.7-3.6-9.7-8.5 0-5.1 4.5-8.7 10.2-8.7 1.1 0 2.1.1 3 .4v-6.3c-1-.2-2-.3-3.1-.3C8.5 14.6 2 20.9 2 29.3 2 37.5 8.7 44 17.2 44 26.6 44 34 37 34 27.6V18c3 2.3 6.2 3.6 10 3.9v-7.1c-4.1-.5-7.5-2.9-9.7-6.6L33.6 7H28z" fill="#ff4d61" opacity=".9"/>
-              <path d="M25.7 7v20.5c0 6.2-4.8 10.5-10.8 10.5-5.5 0-9.7-3.6-9.7-8.5 0-5.1 4.5-8.7 10.2-8.7 1.1 0 2.1.1 3 .4v-6.3c-1-.2-2-.3-3.1-.3C6.2 14.6 0 20.9 0 29.3 0 37.5 6.4 44 14.9 44c9.4 0 16.8-7 16.8-16.4V18c3 2.3 6.2 3.6 10 3.9v-7.1c-4.1-.5-7.5-2.9-9.7-6.6L31.3 7h-5.6z" fill="#7de7ff" opacity=".75"/>
-              <path d="M27 6v20.9c0 5.5-4.1 9.1-9.2 9.1-4.4 0-7.6-2.8-7.6-6.5 0-3.9 3.5-6.6 8.1-6.6 1.5 0 2.9.3 4.1.8v-7.3c-1.4-.4-2.8-.6-4.3-.6-7.8 0-13.5 5.6-13.5 13.4 0 7.6 5.8 13.1 13.3 13.1 8.4 0 14.8-6.2 14.8-15.2V16.2c3 2.5 6.5 4 10.7 4.3v-5.6c-4.7-.7-8.3-3.5-10.3-8.9H27z" fill="#f8f5eb"/>
-            </svg>
+      <div class="mobile-video-note"><span>完整 16:9 画面 · 无裁切</span><span>建议横屏观看</span></div>
+      <div class="mobile-hero-copy">
+        <p class="eyebrow" data-reveal>Photography by XXL_Martin</p>
+        <h1 class="display-title" data-reveal-title>
+          <span class="title-line"><span>Martin</span></span>
+          <span class="title-line"><span>Sports Visual</span></span>
+        </h1>
+        <p class="hero-description" data-reveal>运动影像预约制拍摄。让速度、力量与人物状态成为值得传播的视觉资产。</p>
+        <p class="hero-meta" data-reveal>公路车 / HYROX / 健身 / 马拉松 / 登山 / 户外</p>
+        <div class="hero-actions" data-reveal>
+          <a class="button-primary" href="./pricing.html">查看报价 / 预约拍摄</a>
+          <a class="button-ghost" href="#portfolio">浏览精选作品</a>
+        </div>
+        <div class="mobile-category-list" data-reveal>
+          <a class="category-link" href="#cycling"><span class="category-index">01</span><span class="category-name">Cycling / 骑行摄影</span><span class="category-count">19</span></a>
+          <a class="category-link" href="#hyrox"><span class="category-index">02</span><span class="category-name">HYROX &amp; Fitness</span><span class="category-count">17</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="selected" aria-labelledby="selected-title">
+      <div class="section-inner">
+        <header class="section-heading">
+          <div>
+            <p class="section-kicker" data-reveal>Selected Sports Visuals · 精选运动影像 · 2026</p>
+            <h2 class="section-title" id="selected-title" data-reveal-title>
+              <span class="title-line"><span>Selected</span></span>
+              <span class="title-line"><span>Work <em class="title-cn">精选作品</em></span></span>
+            </h2>
           </div>
-          <div class="social-action">
-            <span class="platform-title">抖音</span>
-            <span class="platform-subtitle">Douyin</span>
+          <p class="section-intro" data-reveal>精选运动摄影作品。照片保持原始比例完整展示，点击可进入高清灯箱查看细节。</p>
+        </header>
+        <div class="featured-grid" data-stagger>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="LS · Cycling" style="--media-ratio: 1800 / 1200">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/cycling/cycling-ls.webp" alt="LS · Cycling" data-full="./assets/images/portfolio/cycling/cycling-ls.webp" loading="eager" decoding="async"></span>
+          </figure>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="DSC00136 · Cycling" style="--media-ratio: 1800 / 1013">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/cycling/cycling-dsc00136.webp" alt="DSC00136 · Cycling" data-full="./assets/images/portfolio/cycling/cycling-dsc00136.webp" loading="lazy" decoding="async"></span>
+          </figure>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="DSC06097 · HYROX & Fitness" style="--media-ratio: 1013 / 1800">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/hyrox/hyrox-dsc06097.webp" alt="DSC06097 · HYROX & Fitness" data-full="./assets/images/portfolio/hyrox/hyrox-dsc06097.webp" loading="lazy" decoding="async"></span>
+          </figure>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="DSC00812 · Cycling" style="--media-ratio: 1800 / 1012">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/cycling/cycling-dsc00812.webp" alt="DSC00812 · Cycling" data-full="./assets/images/portfolio/cycling/cycling-dsc00812.webp" loading="lazy" decoding="async"></span>
+          </figure>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="DSC06329 · HYROX & Fitness" style="--media-ratio: 1800 / 1013">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/hyrox/hyrox-dsc06329.webp" alt="DSC06329 · HYROX & Fitness" data-full="./assets/images/portfolio/hyrox/hyrox-dsc06329.webp" loading="lazy" decoding="async"></span>
+          </figure>
+          <figure class="featured-card media-reveal portfolio-shot" data-stagger-item data-caption="DSC09912 · Cycling" style="--media-ratio: 1800 / 1013">
+            <span class="portfolio-media"><img src="./assets/images/portfolio/cycling/cycling-dsc09912.webp" alt="DSC09912 · Cycling" data-full="./assets/images/portfolio/cycling/cycling-dsc09912.webp" loading="lazy" decoding="async"></span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section alt" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-inner">
+        <header class="section-heading">
+          <div>
+            <p class="section-kicker" data-reveal>Complete Portfolio · 完整作品集</p>
+            <h2 class="section-title" id="portfolio-title" data-reveal-title><span class="title-line"><span>Sports</span></span><span class="title-line"><span>Archive <em class="title-cn">完整作品</em></span></span></h2>
+          </div>
+          <p class="section-intro" data-reveal>从赛事速度到训练现场，用真实动作、人物气质与商业表达建立客户信任。</p>
+        </header>
+
+        <article class="portfolio-category" id="cycling">
+          <header class="category-head">
+            <span class="category-number" data-reveal>01</span>
+            <h3 class="category-title" data-reveal-title><span class="title-line"><span>Cycling <em class="title-cn">骑行摄影</em></span></span></h3>
+            <p class="category-copy" data-reveal><strong>Road Cycling · Mountain Cycling · Race Moments</strong>捕捉速度、姿态、车手精神与赛事氛围。</p>
+          </header>
+          <div class="portfolio-gallery" data-portfolio-gallery="cycling" data-portfolio-layout="desktop" data-stagger></div>
+        </article>
+
+        <article class="portfolio-category" id="hyrox">
+          <header class="category-head">
+            <span class="category-number" data-reveal>02</span>
+            <h3 class="category-title" data-reveal-title><span class="title-line"><span>HYROX</span></span><span class="title-line"><span>&amp; Fitness <em class="title-cn">综合体能与健身</em></span></span></h3>
+            <p class="category-copy" data-reveal><strong>HYROX Training · Functional Fitness · Gym Portrait</strong>记录力量、汗水、训练现场与运动者的真实状态。</p>
+          </header>
+          <div class="portfolio-gallery" data-portfolio-gallery="hyrox" data-portfolio-layout="desktop" data-stagger></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="services" aria-labelledby="services-title">
+      <div class="section-inner trust-layout">
+        <div class="trust-sticky">
+          <p class="section-kicker" data-reveal>Built for athletes &amp; brands · 为运动者与品牌而拍</p>
+          <h2 class="trust-title" id="services-title" data-reveal-title><span class="title-line"><span>Not just</span></span><span class="title-line"><span>a photo. <em class="title-cn">不只是一张照片</em></span></span></h2>
+          <p class="trust-copy" data-reveal>从拍摄策划、动作引导到成片交付，我会把运动者真实的强度与气质，转换成可用于社交传播、个人品牌与商业合作的视觉内容。</p>
+        </div>
+        <div class="service-list" data-stagger>
+          <article class="service-row" data-stagger-item><span class="service-no">01</span><h3>个人运动写真</h3><p>针对骑行、HYROX、健身与户外运动者，建立兼具专业感与人物气质的个人视觉。</p></article>
+          <article class="service-row" data-stagger-item><span class="service-no">02</span><h3>赛事与训练记录</h3><p>重视关键动作、现场氛围、团队关系与品牌露出，适合赛事、俱乐部和训练营。</p></article>
+          <article class="service-row" data-stagger-item><span class="service-no">03</span><h3>品牌商业内容</h3><p>围绕装备、产品与运动场景进行视觉策划，交付可直接进入传播链路的影像资产。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section alt" id="social" aria-labelledby="social-title">
+      <div class="section-inner">
+        <header class="section-heading">
+          <div><p class="section-kicker" data-reveal>Follow the latest work · 关注最新作品</p><h2 class="section-title" id="social-title" data-reveal-title><span class="title-line"><span>Social</span></span><span class="title-line"><span>Proof <em class="title-cn">社交平台</em></span></span></h2></div>
+          <p class="section-intro" data-reveal>在抖音与小红书查看更多现场花絮、完整组图和拍摄更新。</p>
+        </header>
+        <article class="social-profile" data-stagger>
+          <div class="social-signature" data-stagger-item>
+            <span class="section-kicker">Creator / 运动摄影师</span>
+            <h3>潇潇乐</h3>
+            <img class="social-signature-logo" src="./assets/images/xxl-martin-signature.png" alt="By XXL Martin 摄影签名" loading="lazy" decoding="async">
+            <p>运动摄影、骑行内容、器材体验与拍摄幕后。</p>
+          </div>
+          <a class="social-qr" data-stagger-item href="https://www.douyin.com/search/624889043" target="_blank" rel="noopener noreferrer">
+            <span class="social-platform">抖音 / DOUYIN</span>
+            <img src="./assets/images/social-douyin-qr.jpg" alt="抖音二维码，账号潇潇乐 XXL_Martin" loading="lazy" decoding="async">
             <span class="social-id">抖音号 624889043</span>
-            <p class="social-url">douyin.com/search/624889043</p>
-            <div class="social-actions">
-              <a class="social-open" href="https://www.douyin.com/search/624889043" target="_blank" rel="noopener noreferrer">打开抖音链接</a>
-            </div>
-          </div>
-          <figure class="social-qr social-qr--douyin">
-            <img src="./assets/images/social-douyin-qr.jpg" alt="抖音二维码截图，账号潇潇乐 XXL_Martin，抖音号 624889043" loading="lazy" decoding="async">
-          </figure>
-        </article>
-        <article class="social-card">
-          <div class="platform-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" role="img">
-              <rect x="5" y="7" width="38" height="34" rx="10" fill="#f25555"/>
-              <path d="M13 18h22M13 25h18M13 32h22" stroke="#fff7ed" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="36" cy="14" r="4" fill="#d9b76b"/>
-            </svg>
-          </div>
-          <div class="social-action">
-            <span class="platform-title">小红书</span>
-            <span class="platform-subtitle">Red Note</span>
+          </a>
+          <a class="social-qr" data-stagger-item href="https://www.xiaohongshu.com/search_result?keyword=551501728" target="_blank" rel="noopener noreferrer">
+            <span class="social-platform">小红书 / REDNOTE</span>
+            <img src="./assets/images/social-xiaohongshu-qr-v2.png" alt="小红书二维码，账号潇潇乐 XXL_Martin" loading="lazy" decoding="async">
             <span class="social-id">小红书号 551501728</span>
-            <p class="social-url">xiaohongshu.com/search_result?keyword=551501728</p>
-            <div class="social-actions">
-              <a class="social-open" href="https://www.xiaohongshu.com/search_result?keyword=551501728" target="_blank" rel="noopener noreferrer">打开小红书链接</a>
-            </div>
-          </div>
-          <figure class="social-qr social-qr--xhs">
-            <img src="./assets/images/social-xiaohongshu-qr-v2.png" alt="小红书二维码截图，账号潇潇乐 XXL_Martin，小红书号 551501728" loading="lazy" decoding="async">
-          </figure>
+          </a>
         </article>
-      </div>
-      <div class="contact-methods" aria-label="直接联系方式">
-        <div class="contact-pill"><span>Email</span><a href="mailto:liangxiao.sheyi@gmail.com">liangxiao.sheyi@gmail.com</a></div>
-        <div class="contact-pill"><span>WeChat</span><b>www6561628</b></div>
+        <div class="contact-line">
+          <div><span>Email / 商务邮箱</span><a href="mailto:liangxiao.sheyi@gmail.com">liangxiao.sheyi@gmail.com</a></div>
+          <div><span>WeChat / 微信</span><strong>www6561628</strong></div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="portfolio">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Selected Sports Visuals</p>
-          <h2>Selected Sports Visuals</h2>
-        </div>
-        <p class="section-copy">精选运动摄影作品：以速度、力量与真实状态为主线，为运动者、赛事与品牌建立可传播的视觉资产。</p>
-      </div>
-      <article class="portfolio-category">
-        <div class="portfolio-category-head">
-          <h3>Cycling / 骑行摄影</h3>
-          <p class="portfolio-subtitle">Road Cycling · Mountain Cycling · Race Moments</p>
-        </div>
-        <p class="section-copy">捕捉速度、姿态、车手精神与赛事氛围。</p>
-        <div class="gallery portfolio-gallery" data-portfolio-gallery="cycling" data-portfolio-layout="desktop"></div>
-      </article>
-      <article class="portfolio-category">
-        <div class="portfolio-category-head">
-          <h3>HYROX &amp; Fitness / 综合体能与健身摄影</h3>
-          <p class="portfolio-subtitle">HYROX Training · Functional Fitness · Gym Portrait</p>
-        </div>
-        <p class="section-copy">记录力量、汗水、训练现场与运动者的真实状态。</p>
-        <div class="gallery portfolio-gallery" data-portfolio-gallery="hyrox" data-portfolio-layout="desktop"></div>
-      </article>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">AI Enhanced</p>
-          <h2>Poster Assets</h2>
-        </div>
-        <p class="section-copy">AI 处理适合把真实拍摄素材延展成海报、封面、活动预热图和品牌视觉资产。它是附加价值，不替代拍摄本身。</p>
-      </div>
-      <div class="gallery">
-        <figure class="shot medium">
-          <img src="./assets/images/ai-visual-01.jpg" alt="LOOK 骑行 AI 速度品牌海报" loading="lazy" decoding="async">
-          <span class="badge">AI Poster</span>
-        </figure>
-        <figure class="shot large">
-          <img src="./assets/images/ai-visual-02.jpg" alt="夜骑双重曝光 AI 处理作品" loading="lazy" decoding="async">
-          <span class="badge">AI Motion</span>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Cinematic Set</p>
-          <h2>Visual Story</h2>
-        </div>
-        <p class="section-copy">电影感来自光线、前景、距离和人物状态。客户买到的不只是照片，而是一组可以发圈、发小红书、做个人运动形象的内容资产。</p>
-      </div>
-      <div class="gallery">
-        <figure class="shot tall">
-          <img src="./assets/images/cinema-01.jpg" alt="花景女骑手电影感作品" loading="lazy" decoding="async">
-          <span class="badge">Floral</span>
-        </figure>
-        <figure class="shot wide">
-          <img src="./assets/images/cinema-03.jpg" alt="摄影师与骑手叙事组图" loading="lazy" decoding="async">
-          <span class="badge">Story</span>
-        </figure>
-        <figure class="shot wide">
-          <img src="./assets/images/cinema-04.jpg" alt="电影感骑行组图" loading="lazy" decoding="async">
-          <span class="badge">Cinema</span>
-        </figure>
-        <figure class="shot tall">
-          <img src="./assets/images/night-03.jpg" alt="夜骑灯光氛围作品" loading="lazy" decoding="async">
-          <span class="badge">Night</span>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Available Services</p>
-          <h2>Services</h2>
-        </div>
-        <p class="section-copy">面向个人运动形象、赛事跟拍、车队活动、装备品牌与商业内容合作。</p>
-      </div>
-      <div class="service-grid">
-        <article class="card">
-          <h3>个人运动影像</h3>
-          <p>公路车、TT、夜骑、健身、户外。适合头像、朋友圈九宫格、小红书封面和个人运动账号内容。</p>
-        </article>
-        <article class="card">
-          <h3>赛事 / 活动跟拍</h3>
-          <p>HYROX、马拉松、跑团、车队活动、品牌骑行日。兼顾个人高光和团队关系。</p>
-        </article>
-        <article class="card">
-          <h3>品牌 / 装备内容</h3>
-          <p>车店、装备品牌、俱乐部、商业账号发布。可包含装备细节、海报视觉和 AI 辅助延展。</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Booking & Pricing</p>
-          <h2>Pricing</h2>
-        </div>
-        <p class="section-copy">报价保持预约制和项目制，不做低价促销。正式报价根据拍摄人数、时长、交付内容、商业用途和授权范围确定。</p>
-      </div>
-      <div class="price-grid">
-        <article class="card">
-          <h3>个人运动影像</h3>
-          <p class="price">¥699 起</p>
-        </article>
-        <article class="card">
-          <h3>标准运动写真</h3>
-          <p class="price">¥1280 起</p>
-        </article>
-        <article class="card">
-          <h3>团队 / 品牌 / 活动</h3>
-          <p class="price">¥3999 起</p>
-        </article>
-      </div>
-      <div class="button-row" style="margin-top: 28px;">
-        <a class="primary-button" href="./pricing.html">查看完整报价单</a>
-        <a class="ghost-button" href="./index.html">打开手机 H5 版本</a>
+    <section class="booking-section" aria-labelledby="booking-title">
+      <div class="booking-inner">
+        <p class="section-kicker" data-reveal>Book a sports session · 预约运动拍摄</p>
+        <h2 class="cta-title" id="booking-title" data-reveal-title><span class="title-line"><span>Make your</span></span><span class="title-line"><span>move visible. <em class="title-cn">让运动被看见</em></span></span></h2>
+        <p data-reveal>告诉我你的运动项目、拍摄城市、时间与用途，我会给出适合的拍摄方案与报价。</p>
+        <a class="button-primary" href="./pricing.html" data-reveal>查看报价 / 预约拍摄</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">Photography by XXL_Martin</footer>
+  <footer class="site-footer"><span>© <span data-year></span> Martin Sports Visual</span><span>Chengdu · China · Available for travel</span></footer>
 
-  <button class="to-top" type="button" aria-label="返回顶部">
-    <span class="arrow-up" aria-hidden="true"></span>
-  </button>
-
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
-    <button class="lightbox-close" type="button" aria-label="关闭图片预览">&times;</button>
-    <img alt="图片预览" loading="lazy" decoding="async">
+  <aside class="contact-float" data-contact-float aria-label="快捷联系">
+    <div class="contact-panel" id="contact-panel" aria-hidden="true">
+      <a class="contact-option" href="mailto:liangxiao.sheyi@gmail.com">
+        <span class="contact-option-icon" aria-hidden="true"><img src="./assets/icons/mail.svg" alt=""></span>
+        <span class="contact-option-copy"><span class="contact-option-label">Email / 商务邮箱</span><span class="contact-option-value">liangxiao.sheyi@gmail.com</span></span>
+      </a>
+      <button class="contact-option" type="button" data-copy-wechat>
+        <span class="contact-option-icon" aria-hidden="true"><img src="./assets/icons/wechat.svg" alt=""></span>
+        <span class="contact-option-copy"><span class="contact-option-label">WeChat / 微信</span><span class="contact-option-value">www6561628 · 点击复制</span></span>
+      </button>
+      <span class="contact-copy-status" data-contact-status aria-live="polite"></span>
+    </div>
+    <button class="contact-toggle" type="button" aria-label="打开联系方式" aria-controls="contact-panel" aria-expanded="false">
+      <img src="./assets/icons/phone-call.svg" alt="" aria-hidden="true">
+    </button>
+  </aside>
+  <button class="back-to-top" type="button" aria-label="返回顶部">TOP</button>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="作品大图预览">
+    <button class="lightbox-close" type="button" aria-label="关闭图片预览">关闭</button>
+    <img alt="">
     <p class="lightbox-caption"></p>
   </div>
 
   <script src="./assets/js/portfolio-gallery.js"></script>
-  <script>
-    (function () {
-      const topButton = document.querySelector(".to-top");
-      const lightbox = document.querySelector(".lightbox");
-      const lightboxImage = lightbox.querySelector("img");
-      const lightboxCaption = lightbox.querySelector(".lightbox-caption");
-      const lightboxClose = lightbox.querySelector(".lightbox-close");
-
-      topButton.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      document.querySelectorAll(".shot, .social-qr").forEach(function (shot) {
-        shot.setAttribute("tabindex", "0");
-        shot.setAttribute("role", "button");
-
-        function openShot() {
-          const img = shot.querySelector("img");
-          if (!img || !img.currentSrc) return;
-          lightboxImage.src = img.dataset.full || img.currentSrc;
-          lightboxImage.alt = img.alt;
-          lightboxCaption.textContent = shot.dataset.caption || img.alt || "Martin Sports Visual";
-          lightbox.classList.add("is-open");
-          lightboxClose.focus();
-        }
-
-        shot.addEventListener("click", function () {
-          openShot();
-        });
-        shot.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openShot();
-          }
-        });
-      });
-
-      function closeLightbox() {
-        lightbox.classList.remove("is-open");
-        lightboxImage.removeAttribute("src");
-        lightboxCaption.textContent = "";
-      }
-
-      lightboxClose.addEventListener("click", closeLightbox);
-      lightbox.addEventListener("click", function (event) {
-        if (event.target === lightbox) closeLightbox();
-      });
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") closeLightbox();
-      });
-    })();
-  </script>
+  <script src="./assets/js/aurora-background.js"></script>
+  <script src="./assets/js/site-motion.js"></script>
 </body>
 </html>

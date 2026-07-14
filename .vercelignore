@@ -4,6 +4,7 @@
 
 # Local source material and review artifacts; not needed at runtime.
 imports/
+Backup/
 pics/
 review/
 tools/
@@ -17,6 +18,8 @@ GPT 生成的海报集/
 # Original camera/mobile formats should be converted before publishing.
 *.HEIC
 *.heic
+assets/videos/*.MOV
+assets/videos/*.mov
 
 # Local backup QR screenshots; runtime pages use cropped QR files instead.
 assets/images/social-douyin-card.jpg
