@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050505">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M14 42 28 18l8 14 14-10-16 24-8-14z' fill='%23d9b76b'/%3E%3C/svg%3E">
   <title>Martin Sports Visual | Martin 运动影像</title>
   <style>
     /*
@@ -652,6 +653,44 @@
       margin-top: 28px;
     }
 
+    .portfolio-category + .portfolio-category {
+      margin-top: 52px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .portfolio-category-head h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .portfolio-subtitle {
+      margin: 0;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .portfolio-grid .portfolio-frame {
+      min-height: 0;
+      aspect-ratio: 4 / 5;
+    }
+
+    .portfolio-grid .portfolio-frame--lead {
+      grid-column: 1 / -1;
+      aspect-ratio: 4 / 5;
+    }
+
     .feature-gallery .photo-frame:first-child {
       aspect-ratio: 4 / 5;
     }
@@ -1131,6 +1170,31 @@
       </div>
     </section>
 
+    <section class="section reveal" id="portfolio">
+      <p class="section-kicker">Selected Sports Visuals</p>
+      <h2>Selected Sports<br>Visuals</h2>
+      <p class="cn-title">精选运动摄影作品</p>
+      <p class="lead">以速度、力量与真实状态为主线，为运动者、赛事与品牌建立可传播的视觉资产。</p>
+
+      <article class="portfolio-category">
+        <div class="portfolio-category-head">
+          <h3>Cycling / 骑行摄影</h3>
+          <p class="portfolio-subtitle">Road Cycling · Mountain Cycling · Race Moments</p>
+        </div>
+        <p class="body-copy">捕捉速度、姿态、车手精神与赛事氛围。</p>
+        <div class="portfolio-grid" data-portfolio-gallery="cycling"></div>
+      </article>
+
+      <article class="portfolio-category">
+        <div class="portfolio-category-head">
+          <h3>HYROX &amp; Fitness / 综合体能与健身摄影</h3>
+          <p class="portfolio-subtitle">HYROX Training · Functional Fitness · Gym Portrait</p>
+        </div>
+        <p class="body-copy">记录力量、汗水、训练现场与运动者的真实状态。</p>
+        <div class="portfolio-grid" data-portfolio-gallery="hyrox"></div>
+      </article>
+    </section>
+
     <section class="section reveal">
       <p class="section-kicker">Speed in Motion</p>
       <h2>Speed in Motion</h2>
@@ -1418,6 +1482,7 @@
     </div>
   </div>
 
+  <script src="./assets/js/portfolio-gallery.js"></script>
   <script>
     (function () {
       const topButton = document.querySelector(".to-top");
@@ -1504,9 +1569,9 @@
           if (frame.classList.contains("is-missing")) return;
           const img = frame.querySelector("img");
           if (!img || !img.currentSrc) return;
-          lightboxImage.src = img.currentSrc;
+          lightboxImage.src = img.dataset.full || img.currentSrc;
           lightboxImage.alt = img.alt;
-          lightboxCaption.textContent = img.alt || frame.dataset.fallback || "Martin Sports Visual";
+          lightboxCaption.textContent = frame.dataset.caption || img.alt || frame.dataset.fallback || "Martin Sports Visual";
           lightbox.classList.add("is-open");
           lightboxClose.focus();
         }

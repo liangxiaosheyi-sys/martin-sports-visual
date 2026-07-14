@@ -3,9 +3,15 @@
 **/.DS_Store
 
 # Local source material and review artifacts; keep the deployed repo light.
+imports/
 pics/
 review/
 tools/
+tmp/
+outputs/
+output/
+GPT 生成的海报集/
+环法背景模板/
 抖音、小红书 logo/
 
 # Original camera/mobile formats should be converted before publishing.
