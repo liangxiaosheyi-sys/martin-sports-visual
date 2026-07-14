@@ -16,6 +16,7 @@
       ["DSC06097", "hyrox-dsc06097.webp", 1013, 1800], ["DSC00119", "hyrox-dsc00119.webp", 1200, 1800],
       ["DSC00293", "hyrox-dsc00293.webp", 1200, 1800], ["DSC05368", "hyrox-dsc05368.webp", 1013, 1800],
       ["DSC05515", "hyrox-dsc05515.webp", 1013, 1800], ["DSC05714", "hyrox-dsc05714.webp", 1013, 1800],
+      ["DSC05607", "hyrox-dsc05607.webp", 1013, 1800],
       ["DSC06329", "hyrox-dsc06329.webp", 1800, 1013], ["DSC09754", "hyrox-dsc09754.webp", 1800, 1200],
       ["DSC05838", "hyrox-dsc05838.webp", 1013, 1800], ["DSC05950", "hyrox-dsc05950.webp", 1800, 1012],
       ["DSC09064", "hyrox-dsc09064.webp", 1200, 1800], ["DSC09463", "hyrox-dsc09463.webp", 1800, 1200],
