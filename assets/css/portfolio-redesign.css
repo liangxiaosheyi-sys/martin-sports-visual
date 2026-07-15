@@ -588,29 +588,43 @@ figure, h1, h2, h3, p { margin: 0; }
 .ai-view-buttons button:focus-visible,
 .ai-view-buttons button.is-selected { border-color: var(--acid); background: var(--acid); color: #030303; }
 .ai-method-card {
+  grid-column: 1 / -1;
   align-self: stretch;
-  width: min(100%, 520px);
-  justify-self: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(270px, .8fr) minmax(420px, 1.25fr) auto;
+  align-items: end;
+  gap: clamp(28px, 4vw, 68px);
   padding: clamp(30px, 4vw, 58px);
 }
-.ai-method-card h3 { margin-top: 28px; font-size: clamp(52px, 5.6vw, 88px); }
-.ai-method-card ol { margin: 48px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+.ai-method-card > .ai-case-no { grid-column: 1 / -1; }
+.ai-method-card h3 { margin-top: 6px; font-size: clamp(52px, 5.6vw, 88px); }
+.ai-method-card ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-strong);
+}
 .ai-method-card li {
   display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 14px;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
   padding: 20px 0;
+  padding-right: 18px;
   border-bottom: 1px solid var(--line);
   font-size: 13px;
   font-weight: 800;
 }
+.ai-method-card li + li { padding-left: 18px; border-left: 1px solid var(--line); }
 .ai-method-card li b { color: var(--gold); font-size: 9px; letter-spacing: .18em; }
 .ai-method-card li em { color: var(--muted); font-size: 11px; font-style: normal; font-weight: 500; }
 .ai-method-card > a {
   display: inline-flex;
   min-height: 46px;
   align-items: center;
-  margin-top: 34px;
+  margin-top: 0;
   padding: 0 20px;
   border-radius: 999px;
   background: var(--acid);
@@ -1164,8 +1178,15 @@ figure, h1, h2, h3, p { margin: 0; }
   .ai-view-buttons { display: grid; grid-template-columns: 1fr 1fr; }
   .ai-view-buttons button { min-height: 42px; }
   .ai-method-card { padding: 34px 22px; }
+  .ai-method-card {
+    display: block;
+    grid-column: auto;
+  }
   .ai-method-card h3 { font-size: clamp(54px, 16vw, 76px); }
-  .ai-method-card ol { margin-top: 34px; }
+  .ai-method-card ol { display: block; margin-top: 34px; }
+  .ai-method-card li,
+  .ai-method-card li + li { padding: 20px 0; border-left: 0; }
+  .ai-method-card > a { margin-top: 34px; }
   .section-heading { display: block; margin-bottom: 32px; }
   .section-kicker { margin-bottom: 14px; font-size: 9px; }
   .section-title { font-size: clamp(54px, 17vw, 76px); line-height: .9; }

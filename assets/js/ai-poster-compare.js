@@ -10,7 +10,7 @@
       orientation: "landscape",
       beforePosition: "50% 50%",
       beforeTransform: "scale(1.08) translateX(-10%)",
-      mobileOrder: 6
+      mobileOrder: 7
     },
     {
       id: "002",
@@ -22,7 +22,7 @@
       orientation: "landscape",
       beforePosition: "58% 48%",
       beforeTransform: "none",
-      mobileOrder: 7
+      mobileOrder: 8
     },
     {
       id: "003",
@@ -83,15 +83,30 @@
       beforePosition: "52% 50%",
       beforeTransform: "scale(1.12) translateY(17%)",
       mobileOrder: 5
+    },
+    {
+      id: "008",
+      title: "FOCUS. SPEED. VICTORY.",
+      source: "DSC09451 · CYCLING",
+      before: "case-08-dsc09451-before.webp",
+      after: "case-08-merida-poster.webp",
+      ratio: "941 / 1672",
+      orientation: "portrait",
+      beforePosition: "44% 50%",
+      beforeTransform: "scale(1.08) translateY(5%)",
+      mobileOrder: 6
     }
   ];
 
   const assetPath = "./assets/images/ai-poster-lab/";
+  const mobileViewport = window.matchMedia("(max-width: 900px)").matches;
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   document.querySelectorAll("[data-ai-poster-gallery]").forEach(function (gallery) {
     gallery.innerHTML = cases.map(function (item, index) {
-      const eager = index < 2 ? "eager" : "lazy";
+      const eager = mobileViewport
+        ? (item.mobileOrder <= 2 ? "eager" : "lazy")
+        : (index < 2 ? "eager" : "lazy");
       return '<article class="ai-case-card ai-case--' + item.orientation + ' media-reveal" data-ai-case data-stagger-item style="--poster-ratio:' + item.ratio + ';--before-position:' + item.beforePosition + ';--before-transform:' + item.beforeTransform + ';--mobile-order:' + item.mobileOrder + '">'
         + '<header class="ai-case-head"><span class="ai-case-no">CASE ' + item.id + '</span><h3>' + item.title + '</h3><p>' + item.source + '<br>ORIGINAL CAPTURE → AGENT ART DIRECTION</p></header>'
         + '<div class="ai-compare-card">'
@@ -106,7 +121,7 @@
         + '<div class="ai-compare-controls"><p><strong>移动鼠标或手指左右拖动</strong><span>Drag to reveal the transformation</span></p><div class="ai-view-buttons" aria-label="快速切换对比状态"><button type="button" data-ai-view="before" class="is-selected">查看原片</button><button type="button" data-ai-view="after">查看海报</button></div></div>'
         + '</div></article>';
     }).join("")
-      + '<aside class="ai-method-card" data-stagger-item style="--mobile-order:8"><span class="ai-case-no">THE PROCESS / 制作流程</span><h3>ONE SHOOT.<br>MORE VALUE.</h3><ol><li><b>01</b><span>Original Capture<br><em>真实运动摄影</em></span></li><li><b>02</b><span>Agent Direction<br><em>赛事主题与视觉策划</em></span></li><li><b>03</b><span>Campaign Output<br><em>海报与社媒商业交付</em></span></li></ol><a href="./pricing.html">咨询 AI 视觉方案</a></aside>';
+      + '<aside class="ai-method-card" data-stagger-item style="--mobile-order:9"><span class="ai-case-no">THE PROCESS / 制作流程</span><h3>ONE SHOOT.<br>MORE VALUE.</h3><ol><li><b>01</b><span>Original Capture<br><em>真实运动摄影</em></span></li><li><b>02</b><span>Agent Direction<br><em>赛事主题与视觉策划</em></span></li><li><b>03</b><span>Campaign Output<br><em>海报与社媒商业交付</em></span></li></ol><a href="./pricing.html">咨询 AI 视觉方案</a></aside>';
   });
 
   function setSplit(frame, next, isDragging) {
